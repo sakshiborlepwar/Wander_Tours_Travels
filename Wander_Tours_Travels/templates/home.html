@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wander Tours and Travels</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Wander Tours and Travels 🌍</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/bookings">Bookings</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Explore Our Destinations</h2>
+
+        <!-- Flash message block -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div style="margin-bottom: 20px; padding: 10px; background-color: #d4edda; color: #155724; border-radius: 5px;">
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+        <ul>
+            {% for destination in destinations %}
+            <li>
+                <h3>{{ destination.name }}</h3>
+                <p>{{ destination.description }}</p>
+                <p>Price: ₹{{ destination.price }}</p>
+                <a href="/book/{{ destination.id }}" class="button">Book Now</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <footer>
+        <p style="font-size: 20px; text-align: center;">&copy; 2025 Wander Tours and Travels. All rights reserved.</p>
+    </footer>
+</body>
+</html>
