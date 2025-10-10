@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedbacks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Feedbacks</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/bookings">Bookings</a>
+            <a href="/contacts">Contacts</a>
+            <a href="/feedbacks">Feedbacks</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <ul>
+            {% for fb in feedbacks %}
+            <li>
+                <div class="feedback-item">
+
+               <p> <strong>Name:</strong> {{ fb.name }} <br></p>
+               <p><strong>Email:</strong> {{ fb.email }} <br></p>
+                <p><strong>Feedback:</strong> {{ fb.message }} <br></p>
+                <p><strong>Submitted at:</strong> {{ fb.timestamp }}</p>
+
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wander Tours and Travels</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: linear-gradient(90deg, #1e88e5, #1565c0);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 { margin: 0; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s ease;
+    }
+    nav a:hover { color: #ffeb3b; }
+
+    /* Destinations */
+    .container {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 0;
+    }
+    li {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    li:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #1e88e5;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .button:hover { background: #1565c0; }
+
+    /* Forms */
+    form {
+      max-width: 500px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    form input, form textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+    form input:focus, form textarea:focus {
+      border-color: #1e88e5;
+      box-shadow: 0 0 8px rgba(30,136,229,0.5);
+      outline: none;
+    }
+    form button {
+      background: #1e88e5;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    form button:hover { background: #1565c0; }
+
+    /* Footer */
+    footer {
+      background: #1565c0;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    footer a {
+      color: #ffeb3b;
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 20px;
+      transition: color 0.3s ease;
+    }
+    footer a:hover { color: #fff; }
+
+    /* Back-to-top */
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1e88e5;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 12px 15px;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: background 0.3s ease;
+    }
+    #backToTop:hover { background: #1565c0; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Wander Tours and Travels 🌍</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/bookings">Bookings</a>
+      <a href="/contacts">Contacts</a>
+      <a href="/feedbacks">Feedbacks</a>
+      <a href="/admin">Admin</a>
+    </nav>
+  </header>
+
+  <!-- Destinations -->
+  <div class="container">
+    <h2 style="font-size: 30px;">Explore Our Destinations</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div style="margin-bottom:20px; padding:10px; background-color:#d4edda; color:#155724; border-radius:5px;">
+          {% for message in messages %}<p>{{ message }}</p>{% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    <ul>
+      {% for destination in destination %}
+      <li>
+        <h3>{{ destination.name }}</h3>
+        <p>{{ destination.description }}</p>
+        <p><strong>Price:</strong> ₹{{ destination.price }}</p>
+        <a href="/book/{{ destination.id }}" class="button">Book Now</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 style="text-align: center; font-size: 30px;">Contact Us</h2>
+    <form action="{{ url_for('contact') }}" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Feedback -->
+  <section id="feedback">
+    <h2 style="text-align: center; font-size: 30px;">Feedback</h2>
+    <form action="{{ url_for('feedback') }}" method="POST">
+      <input type="text" name="feedbackName" placeholder="Your Name" required>
+      <input type="email" name="feedbackEmail" placeholder="Your Email" required>
+      <textarea name="feedbackMessage" placeholder="Your Feedback" required></textarea>
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p style="font-size: 22px;">&copy; <span id="year"></span> Wander Tours and Travels. All rights reserved.</p>
+  </footer>
+
+  <!-- Back-to-top button -->
+  <button id="backToTop">⬆</button>
+
+  <script>
+    // Auto-hide flash messages
+    setTimeout(() => {
+      document.querySelectorAll("div[style*='background-color:#d4edda']").forEach(msg => {
+        msg.style.transition = "opacity 3s ease";
+        msg.style.opacity = "0";
+        setTimeout(() => msg.remove(), 500);
+      });
+    }, 3000);
+
+    // Live year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Back-to-top button
+    const backToTop = document.getElementById("backToTop");
+    window.onscroll = () => {
+      backToTop.style.display = window.scrollY > 200 ? "block" : "none";
+    };
+    backToTop.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  </script>
+</body>
+</html>

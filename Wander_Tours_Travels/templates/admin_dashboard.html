@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: darkblue; }
+        section { margin-bottom: 40px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #f4f4f4; }
+        nav a { margin-right: 15px; text-decoration: none; color: blue; }
+    </style>
+</head>
+<body>
+
+    <h1>📊 Admin Dashboard</h1>
+    <a href="{{ url_for('admin_logout') }}" class="button" style="color:blue; float: right; margin: 10px;">Logout</a>
+</header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/bookings">Bookings</a>
+        <a href="/contacts">Contacts</a>
+        <a href="/feedbacks">Feedbacks</a>
+        <a href="/admin">Dashboard</a>
+    </nav>
+
+    <!-- Bookings Section -->
+    <section>
+        <h2>📅 All Bookings</h2>
+        <table>
+            <tr>
+                <th>ID</th><th>Name</th><th>Email</th><th>Contact</th><th>Destination</th><th>Date</th><th>Price</th>
+            </tr>
+            {% for b in bookings %}
+            <tr>
+                <td>{{ b.id }}</td>
+                <td>{{ b.name }}</td>
+                <td>{{ b.email }}</td>
+                <td>{{ b.contact }}</td>
+                <td>{{ b.destination.name }}</td>
+                <td>{{ b.date }}</td>
+                <td>{{ b.destination.price }}</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <!-- Contacts Section -->
+    <section>
+        <h2>📩 Contact Enquiries</h2>
+        <table>
+            <tr>
+                <th>ID</th><th>Name</th><th>Email</th><th>Message</th>
+            </tr>
+            {% for c in contacts %}
+            <tr>
+                <td>{{ c.id }}</td>
+                <td>{{ c.name }}</td>
+                <td>{{ c.email }}</td>
+                <td>{{ c.message }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <!-- Feedbacks Section -->
+    <section>
+        <h2>⭐ Feedbacks</h2>
+        <table>
+            <tr>
+                <th>ID</th><th>Name</th><th>Email</th><th>Message</th><th>Timestamp</th>
+            </tr>
+            {% for f in feedbacks %}
+            <tr>
+                <td>{{ f.id }}</td>
+                <td>{{ f.name }}</td>
+                <td>{{ f.email }}</td>
+                <td>{{ f.message }}</td>
+                <td>{{ f.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+</body>
+</html>

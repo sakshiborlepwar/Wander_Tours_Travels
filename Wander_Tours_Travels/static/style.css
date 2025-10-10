@@ -1,0 +1,155 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+}
+header {
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: white;
+}
+.container {
+    padding: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    height: 100px;
+}
+th, td {
+    border: 1px solid #0056b3;
+    padding: 8px;
+}
+th {
+    background-color: #2196F3;
+    color: white;
+}
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2196F3;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+footer {
+    background-color: #2196F3; /* Blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+    border-top: 4px solid #2196F3;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+footer a {
+    color: #cce5ff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto; /* center horizontally */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+form input,
+form select,
+form textarea,
+form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+.booking-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.booking-container h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.booking-container form {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-container .home-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.booking-container .home-button:hover {
+    background-color: #0056b3;
+}
+
+.feedback-item {
+    background: #ffffff; /* white card */
+    padding: 15px;
+    margin-bottom: 20px;  /* space between feedbacks */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.contact-item {
+    background: #ffffff; /* white card */
+    padding: 15px;
+    margin-bottom: 20px;  /* space between feedbacks */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
